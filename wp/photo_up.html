@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Magnetic Board</title>
+    <link href="bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link href="css/reset.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<div id="photo-up">
+      <form class="form-horizontal">
+        <div class="control-group">    
+        <table border="1">
+          <tr><td  colspan="2" width="400px" height="300px"></td></tr>
+          <tr>
+            <td><label class="control-label" for="inputname">Title : </label><input type="text" name="photo_title"></td>
+            <td><label class="control-label" for="inputname">Content : </label><textarea cols="30" rows="5" name="photo_content"></textarea></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="inputname">Category : </label>
+            
+              <div class="controls">   
+                <select name="photo_category">
+                  <option value="choose">-선택-</option>
+                  <option value="animal">Animal</option>
+                  <option value="car">Car</option>
+                  <option value="fashion">Fashion</option>
+                  <option value="food">Food</option>
+                  <option value="humor">Humor</option>
+                  <option value="nature">Nature</option>
+                  <option value="people">People</option>
+                  <option value="sports">Sports</option>
+                  <option value="extra">Extra</option>
+                </select> 
+                <td><center><button>사진등록</button></td>
+              </div>
+            </td>
+          </tr>
+        </table>
+        </div> 
+      </form>
+    </div>
+  </body>
+</html>
