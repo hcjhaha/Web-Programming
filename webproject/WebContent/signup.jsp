@@ -1,3 +1,60 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*" import="java.util.*" import="org.apache.commons.lang3.StringUtils" %>
+<%
+	String errorMsg = null;	
+	String actionUrl;
+	
+	Connection conn = null;	
+	PreparedStatement stmt = null;	
+	ResultSet rs = null;
+	
+	String dbUrl = "jdbc:mysql://localhost:3306/wp";	
+	String dbUser = "black";	
+	String dbPassword = "mustache";
+	
+	String userid = "";
+	String pwd = "";
+	String name = "";
+	String email = "";
+	String birthday = "";
+	String phone = "";
+	
+	int id = 0;
+	try {
+		id = Integer.parseInt(request.getParameter("id"));
+	} catch (Exception e) {}
+
+	if (id > 0) {
+		actionUrl = "update.jsp";
+		try {
+		    Class.forName("com.mysql.jdbc.Driver");
+
+			conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+
+			stmt = conn.prepareStatement("SELECT * FROM users WHERE id = ?");
+			stmt.setInt(1, id);
+			
+	 		rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				userid = rs.getString("userid");
+				pwd = rs.getString("pwd");
+				name = rs.getString("name");
+				email = rs.getString("email");
+				birthday = rs.getString("birthday");
+				phone = rs.getString("phone");
+			}
+		}catch (SQLException e) {
+			errorMsg = "SQL 에러: " + e.getMessage();
+		} finally {
+			if (rs != null) try{rs.close();} catch(SQLException e) {}
+			if (stmt != null) try{stmt.close();} catch(SQLException e) {}
+			if (conn != null) try{conn.close();} catch(SQLException e) {}
+		}
+	}else {
+		actionUrl = "register.jsp";
+	}
+%>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -11,117 +68,68 @@
   <body>
     <div id="body_wrap">    
     <jsp:include page="include/header.jsp" flush="true"></jsp:include>
+     <% if (errorMsg != null && errorMsg.length() > 0 ) {
+    	 		out.print("<div class='alert'>" + errorMsg + "</div>"); 
+    	 	} %>
       <div id="center">
-      	<form class="form-horizontal" id="signin">
+      	<% if (id <= 0) { %>
+      		<form class="form-horizontal" id="signup" method="post" action="register.jsp">
+      	<% }else { %>
+      		<form class="form-horizontal" id="signup" method="post" action="update.jsp">
+      			<input type="hidden" name="id" value="<%= id %>">
+      	<% }  %>
         <div class="control-group">    
             <label class="control-label" for="inputId">ID</label>
           <div class="controls">    
-            <input type="text" id="inputId" placeholder="ID">    
+            <input type="text" id="inputid" name="inputid" placeholder="id" value="<%=userid%>">    
           </div>  
-        </div>  
-        <div class="control-group">   
-          <label class="control-label" for="inputPassword">Password</label>
-            <div class="controls">
-              <input type="password" id="inputPassword" placeholder="Password">
-            </div>  
         </div>
+        <% if (id <= 0) { %>
+	        <div class="control-group">   
+	          <label class="control-label" for="inputPassword">Password</label>
+	            <div class="controls">
+	              <input type="password" name="inputpassword">
+	            </div>
+	        </div>
+	        <div class="contro-group">
+	          <label class="control-label" for="inputPassword">Password Confirm</label>
+	            <div class="controls">
+	              <input type="password" id="inputPassword_confirm" placeholder="Password" name="inputpasswordconfirm">
+	            </div>  
+	        </div><br>
+        <% } %>
         <div class="control-group">    
             <label class="control-label" for="inputname">이름</label>
           <div class="controls">   
-            <input type="text" id="inputname" placeholder="Name">    
+            <input type="text" id="inputname" placeholder="Name" name="inputname" value="<%=name %>">    
           </div>  
         </div>
         <div class="control-group">    
             <label class="control-label" for="inputEmail">E-mail</label>
           <div class="controls">    
-            <input type="text" id="inputEmail" placeholder="Email"> @ 
-            <input type="text" id="inputwri" placeholder="직접입력">
-            <select name="e-mail">
-            <option value="mai1l">-선택하세요-</option>
-            <option value="mail2">hanmail.net</option>
-            <option value="mail3">naver.com</option>
-            <option value="mail4">nate.com</option>
-            <option value="mail5">hananet.net</option>
-            <option value="mail6">hotmail.com</option>
-            <option value="mail7">직접입력</option>
-            </select>   
+            <input type="text" id="inputEmail" placeholder="Email" name="inputemail" value="<%=email %>">
           </div>  
         </div> 
         <div class="control-group">    
-            <label class="control-label" for="inputBirth">생일</label>
+            <label class="control-label" for="inputBirthday">생일</label>
           <div class="controls">    
-          <select name="moon" >
-          <option value="mon">-선택-</option>
-          <option value="mon1">1</option>
-          <option value="mon2">2</option>
-          <option value="mon3">3</option>
-          <option value="mon4">4</option>
-          <option value="mon5">5</option>
-          <option value="mon6">6</option>
-          <option value="mon7">7</option>
-          <option value="mon8">8</option>
-          <option value="mon9">9</option>
-          <option value="mon10">10</option>
-          <option value="mon11">11</option>
-          <option value="mon12">12</option>
-          </select>
-          월
-          <select name="day">
-          <option value="da">-선택-</option>
-          <option value="da1">1</option>
-          <option value="da2">2</option>
-          <option value="da3">3</option>
-          <option value="da4">4</option>
-          <option value="da5">5</option>
-          <option value="da6">6</option>
-          <option value="da7">7</option>
-          <option value="da8">8</option>
-          <option value="da9">9</option>
-          <option value="da10">10</option>
-          <option value="da11">11</option>
-          <option value="da12">12</option>
-          <option value="da13">13</option>
-          <option value="da14">14</option>
-          <option value="da15">15</option>
-          <option value="da16">16</option>
-          <option value="da17">17</option>
-          <option value="da18">18</option>
-          <option value="da19">19</option>
-          <option value="da20">20</option>
-          <option value="da21">21</option>
-          <option value="da22">22</option>
-          <option value="da23">23</option>
-          <option value="da24">24</option>
-          <option value="da25">25</option>
-          <option value="da26">26</option>
-          <option value="da27">27</option>
-          <option value="da28">28</option>
-          <option value="da29">29</option>
-          <option value="da30">30</option>
-          <option value="da31">31</option>
-          </select>  
-          일
+          	<input type="text" id="inputbirthday" placeholder="Name" name="inputbirthday" value="<%=birthday %>">
           </div>  
         </div>  
         <div class="control-group">    
-            <label class="control-label" for="inputname">핸드폰번호</label>
+            <label class="control-label" for="inputname">핸드폰</label>
           <div class="controls">   
-          <select name="phone">
-          <option value="pon">-선택-</option>
-          <option value="pon1">010</option>
-          <option value="pon2">011</option>
-          <option value="pon3">016</option>
-          <option value="pon3">017</option>
-          <option value="pon3">018</option>
-          <option value="pon3">019</option>
-          </select> 
-          <input type="text"> 
-          <input type="text">  
+         		<input type="text" id="inputphone" placeholder="Name" name="inputphone" value="<%=phone %>">
           </div>
         </div>     
         <div class="control-group">  
-          <div class="controls">   
-            <button type="submit" class="btn">회원가입</button>    
+          <div class="controls">
+          <% if (id <= 0) { %>
+            <input type="submit" class="btn" value="회원가입">
+          <% } else { %>
+          	<input type="submit" class="btn" value="수정">
+          <% } %>   
+            <button type="reset" class="btn">다시입력</button>    
           </div>
         </div>
         </form>

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.*"  import="java.sql.*" 
+    import="org.apache.commons.lang3.StringUtils"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,7 +15,7 @@
     <div id="body_wrap">
     <jsp:include page="include/header.jsp" flush="true"></jsp:include>
     	<div id="center">
-          <form class="form-horizontal" id="form-login">
+          <form class="form-horizontal" id="form-login" method="post" action="signup.jsp">
             <div class="control-group">
               <label class="control-label" for="ID">ID</label>
                 <div class="controls">
@@ -30,7 +33,10 @@
                 <label class="checkbox">
                   <input type="checkbox"> Remember me
                 </label>
-                <a href="#"><button type="submit" class="btn">사진등록</button></a>
+                <a href="login.jsp"><input type="submit" class="btn" value="로그인"></a>
+                <a href="aaa.html" class="btn">
+                	회원가입
+               	</a>
               </div>
             </div>
           </form>

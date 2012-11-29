@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.sql.*" import="java.util.*" 
+    %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -35,7 +38,7 @@
                 <option value="sports">Sports</option>
                 <option value="extra">Extra</option>
               </select> 
-              <td><a href="#"><button type="submit" class="btn">Sign in</button></a></td>
+              <td><a href="#"><button type="submit" class="btn">Upload</button></a></td>
             </td>
           </tr>
         </table>

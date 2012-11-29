@@ -19,12 +19,13 @@ a:link, a:visited{text-decoration: none; color: black;}
 #head_bot{float: right;}
 #navbar {width:1024px; height: 20px; background-color:silver; text-align:center;}
 #center {width:1024px; height:500px; background-color:#2E8B57;}
-#form-login{padding: 170px 250px}
-#signin{padding:100px 0 0 30px; width:994px; height:400px;}
+#form-login{padding: 170px 230px}
+#signup{padding:60px 0 0 30px; margin:0 0 0 200px; width:994px; height:400px;}
 #footer {height: 20px; width:1024px; background-color: #CD853F; color:black; text-align: center; margin: 0 0 10px 0;}
 #clock{color: black; padding: 0 0 10px 0; float: right;} 
 #about{width: 512px; padding-left: 200px; padding-top: 20px;}
 #photo_up{padding: 50px 0 0 250px;}
+.row{padding: 50px 0 0 0;}
 #big{font-size:25px;padding: 5px;}
 #big2{font-size:25px;padding: 5px;}
 #mag_bar{margin-top: 4px;height: 5px; width:527px; background-color: #CD853F;
