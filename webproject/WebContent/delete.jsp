@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.sql.*" import="java.util.*" 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*" import="java.util.*" 
     %>
 <%
 	String errorMsg = null;
@@ -32,7 +31,6 @@
 	} catch (SQLException e) {
 		errorMsg = "SQL 에러: " + e.getMessage();
 	} finally {
-		// 무슨 일이 있어도 리소스를 제대로 종료
 		if (rs != null) try{rs.close();} catch(SQLException e) {}
 		if (stmt != null) try{stmt.close();} catch(SQLException e) {}
 		if (conn != null) try{conn.close();} catch(SQLException e) {}
@@ -51,10 +49,10 @@
   </head>
 <body>
 <div id="body_wrap">
- 	<div id="center">
  	<jsp:include page="include/header.jsp">
-  	<jsp:param name="current" value="Sign Up"/>
+  	<jsp:param name="current" value="delete"/>
 	</jsp:include>
+ 	<div id="center">
  		<% if (errorMsg != null) { %>
  			<div class="alert alert-error">
  				<h3>Errors:</h3>
@@ -66,7 +64,7 @@
 	 		</div>
 	 	<%}%>
 	 		<div class="form-action">
-	 		<a href="index.jsp" class="btn">목록으로</a>
+	 			<a href="index.jsp" class="btn">목록으로</a>
 	 		</div>
  	</div>
  	<jsp:include page = "include/footer.jsp" />

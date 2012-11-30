@@ -2,7 +2,6 @@
     pageEncoding="UTF-8" import="java.sql.*" import="java.util.*" 
     import="org.apache.commons.lang3.StringUtils"%>
 <%
-	// DB 접속을 위한 준비
 	Connection conn = null;
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
@@ -71,10 +70,9 @@
     <meta charset="utf-8">
   </head>
 <body>
-
 <div id="body_wrap">
 <jsp:include page="include/header.jsp">
-  <jsp:param name="current" value="Sign Up"/>
+  <jsp:param name="current" value="update"/>
 </jsp:include>
  	<div id="center">
  		<% if (errorMsgs.size() > 0) { %>

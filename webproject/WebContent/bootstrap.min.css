@@ -25,9 +25,9 @@ a:link, a:visited{text-decoration: none; color: black;}
 #clock{color: black; padding: 0 0 10px 0; float: right;} 
 #about{width: 512px; padding-left: 200px; padding-top: 20px;}
 #photo_up{padding: 50px 0 0 250px;}
-.row{padding: 50px 0 0 0;}
 #big{font-size:25px;padding: 5px;}
 #big2{font-size:25px;padding: 5px;}
+.row{padding:10px 0 0 0 ;}
 #mag_bar{margin-top: 4px;height: 5px; width:527px; background-color: #CD853F;
 	-moz-border-radius-topright: 3px;
 	-moz-border-radius-topleft: 3px;

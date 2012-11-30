@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div id="header">
   <div id="head_top">
     <div id="head_top_right">
@@ -17,14 +16,19 @@
     <a href="main.jsp"><img src="img/logo.jpg" alt="logo"></a>
   </div>
   <div id="head_bot">
-     <a href="about.jsp">About?!</a> | <a href="login.jsp">Login</a> | <a href="signup.jsp">Sign up</a>
+     <a href="about.jsp">About</a> |  
+     <% if(session.getAttribute("userid") == null) {%>
+     <a href="login.jsp">Login</a> | <a href="signup.jsp">Sign up</a> 
+     <%}else{ %>
+     <%=session.getAttribute("username")%>님 | <a href="photo.jsp">Upload</a> | <a href="logout.jsp">Logout</a>
+     <%} %>
   </div>
 </div>
 <div id="navbar">
   <div class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category</a> |
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <li><a href="Animal.html">Animal</a></a></li>
+      <ul class="dropdown-menu">
+        <li><a href="Animal.html">Animal</a></li>
         <li><a href="Car.html">Car</a></li>
         <li><a href="Fashion.html">Fashion</a></li>
         <li><a href="Food">Food</a></li>

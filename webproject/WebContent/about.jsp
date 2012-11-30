@@ -13,7 +13,9 @@
   </head>
   <body>
     <div id="body_wrap">
-    <jsp:include page="include/header.jsp" flush="true"></jsp:include>
+    <jsp:include page="include/header.jsp" flush="true">
+			<jsp:param name="current" value="about" />
+		</jsp:include>
     <div id="center">
       <div id="about">
         <div id="big">
