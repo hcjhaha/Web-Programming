@@ -26,7 +26,7 @@
 	if (id > 0) {
 		actionUrl = "update.jsp";
 		try {
-		    Class.forName("com.mysql.jdbc.Driver");
+		 	Class.forName("com.mysql.jdbc.Driver");
 
 			conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
 
@@ -67,18 +67,20 @@
   </head>
   <body>
     <div id="body_wrap">    
-    <jsp:include page="include/header.jsp" flush="true"></jsp:include>
+    <jsp:include page="include/header.jsp" flush="true">
+			<jsp:param name="current" value="Sign Up" />
+		</jsp:include>
      <% if (errorMsg != null && errorMsg.length() > 0 ) {
     	 		out.print("<div class='alert'>" + errorMsg + "</div>"); 
     	 	} %>
       <div id="center">
       	<% if (id <= 0) { %>
-      		<form class="form-horizontal" id="signup" method="post" action="register.jsp">
+      	<form class="form-horizontal" id="signup" method="post" action="register.jsp">
       	<% }else { %>
-      		<form class="form-horizontal" id="signup" method="post" action="update.jsp">
-      			<input type="hidden" name="id" value="<%= id %>">
+      	<form class="form-horizontal" id="signup" method="post" action="update.jsp">
+      		<input type="hidden" name="id" value="<%= id %>">
       	<% }  %>
-        <div class="control-group">    
+        <div class="control-group">
             <label class="control-label" for="inputId">ID</label>
           <div class="controls">    
             <input type="text" id="inputid" name="inputid" placeholder="id" value="<%=userid%>">    
@@ -88,50 +90,50 @@
 	        <div class="control-group">   
 	          <label class="control-label" for="inputPassword">Password</label>
 	            <div class="controls">
-	              <input type="password" name="inputpassword">
+	              <input type="password" name="inputpassword" placeholder="Password">
 	            </div>
 	        </div>
 	        <div class="contro-group">
 	          <label class="control-label" for="inputPassword">Password Confirm</label>
 	            <div class="controls">
-	              <input type="password" id="inputPassword_confirm" placeholder="Password" name="inputpasswordconfirm">
+	              <input type="password" id="inputPassword_confirm" placeholder="Password Confirm" name="inputpasswordconfirm">
 	            </div>  
 	        </div><br>
         <% } %>
-        <div class="control-group">    
-            <label class="control-label" for="inputname">이름</label>
-          <div class="controls">   
-            <input type="text" id="inputname" placeholder="Name" name="inputname" value="<%=name %>">    
-          </div>  
-        </div>
-        <div class="control-group">    
-            <label class="control-label" for="inputEmail">E-mail</label>
-          <div class="controls">    
-            <input type="text" id="inputEmail" placeholder="Email" name="inputemail" value="<%=email %>">
-          </div>  
-        </div> 
-        <div class="control-group">    
-            <label class="control-label" for="inputBirthday">생일</label>
-          <div class="controls">    
-          	<input type="text" id="inputbirthday" placeholder="Name" name="inputbirthday" value="<%=birthday %>">
-          </div>  
-        </div>  
-        <div class="control-group">    
-            <label class="control-label" for="inputname">핸드폰</label>
-          <div class="controls">   
-         		<input type="text" id="inputphone" placeholder="Name" name="inputphone" value="<%=phone %>">
-          </div>
-        </div>     
-        <div class="control-group">  
-          <div class="controls">
-          <% if (id <= 0) { %>
-            <input type="submit" class="btn" value="회원가입">
-          <% } else { %>
-          	<input type="submit" class="btn" value="수정">
-          <% } %>   
-            <button type="reset" class="btn">다시입력</button>    
-          </div>
-        </div>
+	        <div class="control-group">    
+	            <label class="control-label" for="inputname">이름</label>
+	          <div class="controls">   
+	            <input type="text" id="inputname" placeholder="Name" name="inputname" value="<%=name %>">    
+	          </div>  
+	        </div>
+	        <div class="control-group">    
+	            <label class="control-label" for="inputEmail">E-mail</label>
+	          <div class="controls">    
+	            <input type="text" id="inputEmail" placeholder="Email" name="inputemail" value="<%=email %>">
+	          </div>  
+	        </div> 
+	        <div class="control-group">    
+	            <label class="control-label" for="inputBirthday">생일</label>
+	          <div class="controls">    
+	          	<input type="text" id="inputbirthday" placeholder="Birthday" name="inputbirthday" value="<%=birthday %>">
+	          </div>  
+	        </div>  
+	        <div class="control-group">    
+	            <label class="control-label" for="inputname">핸드폰</label>
+	          <div class="controls">   
+	         		<input type="text" id="inputphone" placeholder="Phone" name="inputphone" value="<%=phone %>">
+	          </div>
+	        </div>     
+	        <div class="control-group">  
+	          <div class="controls">
+	          <% if (id <= 0) { %>
+	            <input type="submit" class="btn" value="회원가입">
+	          <% } else { %>
+	          	<input type="submit" class="btn" value="수정">
+	          <% } %>   
+	            <button type="reset" class="btn">다시입력</button>    
+	          </div>
+       		</div>
         </form>
       </div>
     <jsp:include page="include/footer.jsp" flush="true"></jsp:include>

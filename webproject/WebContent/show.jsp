@@ -70,10 +70,10 @@
 <body>
 
 <div id="body_wrap">
- <div id="center">
- 	<jsp:include page="include/header.jsp">
-  	<jsp:param name="current" value="Sign Up"/>
+	<jsp:include page="include/header.jsp">
+  	<jsp:param name="current" value="show"/>
 	</jsp:include>
+ <div id="center">
  <%
  if (errorMsg != null && errorMsg.length() > 0 ) {
     out.print("<div class='alert'>" + errorMsg + "</div>");
@@ -89,7 +89,6 @@
       </ul>
     </div>      
 <% } %>
-  
 	  <div class="form-actions">
 	    <a href="index.jsp" class="btn">목록으로</a>
 	    <% if (id > 0) { %>

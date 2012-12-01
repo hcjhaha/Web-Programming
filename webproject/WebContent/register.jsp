@@ -82,10 +82,10 @@
     <meta charset="utf-8">
   </head>
 <body>
-<jsp:include page="include/header.jsp">
-  <jsp:param name="current" value="Sign Up"/>
-</jsp:include>
 <div id="body_wrap">
+	<jsp:include page="include/header.jsp">
+  	<jsp:param name="current" value="register"/>
+	</jsp:include>
  	<div id="center">
  		<% if (errorMsgs.size() > 0) { %>
  			<div class="alert alert-error">

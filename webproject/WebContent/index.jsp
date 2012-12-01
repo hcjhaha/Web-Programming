@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*"  import="java.sql.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*"  import="java.sql.*" %>
 <%
-	
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
@@ -16,10 +14,9 @@
 		pageNo = Integer.parseInt(request.getParameter("page"));
 	} catch (NumberFormatException ex) {}
 	
-	int numInPage = 10;											
+	int numInPage = 9;											
 	int startPos = (pageNo - 1) * numInPage; 	
 	int numItems, numPages;
-	
 %>    
 <!DOCTYPE html>
 <html>
@@ -35,10 +32,10 @@
 <body>
 
 <div id="body_wrap">
-  <div id="center">
-  <jsp:include page="include/header.jsp" flush="true">
-  	<jsp:param name="current" value="Sign Up"/>
+	<jsp:include page="include/header.jsp" flush="true">
+  	<jsp:param name="current" value="index"/>
 	</jsp:include>
+  <div id="center">
  	<%
  	try {
 	    Class.forName("com.mysql.jdbc.Driver");
@@ -149,22 +146,17 @@
 			if (conn != null) try{conn.close();} catch(SQLException e) {}
 		}
 		%>
-		<div class="form-action">
-			<a href="signup.jsp" class="btn">Sign Up</a>
-		</div>	 	
   </div>
 <jsp:include page = "include/footer.jsp" />
 </div>
 </body>
 
 <script>
-$(function{
-	$("a[data-action='delete']").click(function() {
-		if (confirm("정말로 삭제하시겠습니까?")) {
-			location = 'delete.jsp?id=' + $(this).attr('data-id');
-		}
-		return false;
-	});
+$("a[data-action='delete']").click(function() {
+	if (confirm("정말로 삭제하시겠습니까?")) {
+		location = 'delete.jsp?id=' + $(this).attr('data-id');
+	}
+	return false;
 });
 </script>
 </html>
