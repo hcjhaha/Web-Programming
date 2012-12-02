@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*" import="java.util.*" import="org.apache.commons.lang3.StringUtils" %>
+
+
 <div id="header">
   <div id="head_top">
     <div id="head_top_right">
@@ -20,7 +22,13 @@
      <% if(session.getAttribute("userid") == null) {%>
      <a href="login.jsp">Login</a> | <a href="signup.jsp">Sign up</a> 
      <%}else{ %>
-     <%=session.getAttribute("username")%>님 | <a href="photo.jsp">Upload</a> | <a href="logout.jsp">Logout</a>
+     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%=session.getAttribute("username")%>님</a> |
+     	<ul class="dropdown-menu">
+     		<li><a href="show.jsp?id=<%=session.getAttribute("id")%>">Mypage</a></li>
+     		<li><a href="#">Friend</a></li>
+     		<li><a href="#">Message</a></li>
+     	</ul> 
+     <a href="photo.jsp">Upload</a> | <a href="logout.jsp">Logout</a>
      <%} %>
   </div>
 </div>
@@ -28,16 +36,16 @@
   <div class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category</a> |
       <ul class="dropdown-menu">
-        <li><a href="Animal.html">Animal</a></li>
-        <li><a href="Car.html">Car</a></li>
-        <li><a href="Fashion.html">Fashion</a></li>
-        <li><a href="Food">Food</a></li>
-        <li><a href="Humor.html">Humor</a></li>
-        <li><a href="Nature.html">Nature</a></li>
-        <li><a href="People.html">People</a></li>
-        <li><a href="Sports.html">Sports</a></li>
-        <li><a href="Extra.html">Extra</a></li>
+        <li><a href="animal.jsp">Animal</a></li>
+        <li><a href="car.jsp">Car</a></li>
+        <li><a href="fashion.jsp">Fashion</a></li>
+        <li><a href="food.jsp">Food</a></li>
+        <li><a href="humor.jsp">Humor</a></li>
+        <li><a href="nature.jsp">Nature</a></li>
+        <li><a href="people.jsp">People</a></li>
+        <li><a href="sports.jsp">Sports</a></li>
+        <li><a href="extra.jsp">Extra</a></li>
       </ul>
-    <a href="#">Newest</a>
+    <a href="time.jsp">Newest</a>
   </div>
 </div>

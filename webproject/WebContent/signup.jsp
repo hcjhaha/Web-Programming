@@ -7,7 +7,7 @@
 	PreparedStatement stmt = null;	
 	ResultSet rs = null;
 	
-	String dbUrl = "jdbc:mysql://localhost:3306/wp";	
+	String dbUrl = "jdbc:mysql://localhost:3306/wp";
 	String dbUser = "black";	
 	String dbPassword = "mustache";
 	

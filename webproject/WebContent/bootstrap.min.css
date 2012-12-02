@@ -27,7 +27,8 @@ a:link, a:visited{text-decoration: none; color: black;}
 #photo_up{padding: 50px 0 0 250px;}
 #big{font-size:25px;padding: 5px;}
 #big2{font-size:25px;padding: 5px;}
-.row{padding:10px 0 0 0 ;}
+#photosub{margin: 0 0 0 70px;}
+#fileup{width:222px;}
 #mag_bar{margin-top: 4px;height: 5px; width:527px; background-color: #CD853F;
 	-moz-border-radius-topright: 3px;
 	-moz-border-radius-topleft: 3px;
@@ -38,4 +39,10 @@ a:link, a:visited{text-decoration: none; color: black;}
 	-moz-border-radius-topleft: 3px;
 	border-radius: 3px 3px 3px 3px;
 }
-table,tr{vertical-align: middle; text-align: center;}
+table.tr{vertical-align: middle; text-align: center; }
+table.td{padding:5px,10px,20px,30px;}
+.row{padding:10px 0 0 0;}
+.photo td{line-height:2px; }
+.photo{text-align: center; margin:auto; }
+.photobigtable{ text-align: center; padding:30px auto; }
+

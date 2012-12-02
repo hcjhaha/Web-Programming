@@ -55,7 +55,7 @@
  	%>
  		<div class="row">
 			<div class="span12 page-info">
-				<div class="pull-left">
+				<div class="pull-left" >
 					Total <b><%=numItems %></b> users 
 				</div>
 				<div class="pull-right">
@@ -146,6 +146,7 @@
 			if (conn != null) try{conn.close();} catch(SQLException e) {}
 		}
 		%>
+
   </div>
 <jsp:include page = "include/footer.jsp" />
 </div>
