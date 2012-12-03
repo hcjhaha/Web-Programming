@@ -1,6 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*"  import="java.sql.*" 
     import="org.apache.commons.lang3.StringUtils"%>
+
+
+
+<%
+
+Connection conn = null;
+PreparedStatement stmt = null;
+ResultSet rs = null;
+
+String dbUrl = "jdbc:mysql://localhost:3306/wp";
+String dbUser = "black";
+String dbPassword = "mustache";
+request.setCharacterEncoding("utf-8");
+
+try{
+	
+	
+	String name ="";
+	String content = "";
+
+	name = request.getParameter("name");
+	content = request.getParameter("content");
+			
+			
+	Class.forName("com.mysql.jdbc.Driver");
+	
+	
+	conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+
+	stmt = conn.prepareStatement("SELECT * FROM comment");
+	rs = stmt.executeQuery();
+
+
+%>
+
+
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -32,8 +70,72 @@
         </div>
          : 명지대학교 컴퓨터공학과 웹 프로그래밍 5조 조원<br>　최진욱, 황철재, 안다희, 서혜인, 이현선
       </div>
+      
+      
+   
+      
+      
+    
+      <%
+   
+      if(session.getAttribute("id") !=null){
+      %>
+    
+   
+      <form  id="co" method ="post" action = "comment.jsp" >
+      	 이름 : <input type ="text" name ="name">
+     		  내용 : <textarea name ="content"></textarea>
+        
+      		<input type = "submit" value = "작성">
+      </form>
+      
+     
+         <%
+      }
+      
+   	while (rs.next())
+   	
+   	{
+  		%>
+  		
+  		<ul>
+  		<li> 
+  		이름 : <%= rs.getString("user_id")%>
+  		</li>
+  		
+  		<li> 
+  		내용: <%= rs.getString("content")%>
+  		</li>
+  		
+  		</ul>
+  		
+  		<%} %>
+     
+  		 
     </div>
     <jsp:include page="include/footer.jsp" flush="true"></jsp:include>
     </div>
   </body>
+
+<%
+} finally {
+	if (rs != null)
+		try {
+			rs.close();
+		} catch (SQLException e) {
+		}
+	if (stmt != null)
+		try {
+			stmt.close();
+		} catch (SQLException e) {
+		}
+	if (conn != null)
+		try {
+			conn.close();
+		} catch (SQLException e) {
+		}
+}
+
+
+%>
 </html>
