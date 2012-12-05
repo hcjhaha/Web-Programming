@@ -18,10 +18,10 @@ request.setCharacterEncoding("utf-8");
 try{
 	
 	
-	String name ="";
+	String userid ="";
 	String content = "";
 
-	name = request.getParameter("name");
+	userid = request.getParameter("userid");
 	content = request.getParameter("content");
 			
 			
@@ -71,11 +71,6 @@ try{
          : 명지대학교 컴퓨터공학과 웹 프로그래밍 5조 조원<br>　최진욱, 황철재, 안다희, 서혜인, 이현선
       </div>
       
-      
-   
-      
-      
-    
       <%
    
       if(session.getAttribute("id") !=null){
@@ -83,8 +78,8 @@ try{
     
    
       <form  id="co" method ="post" action = "comment.jsp" >
-      	 이름 : <input type ="text" name ="name">
-     		  내용 : <textarea name ="content"></textarea>
+      	
+ 						 댓글달기 <textarea name ="content"></textarea>
         
       		<input type = "submit" value = "작성">
       </form>
@@ -97,22 +92,19 @@ try{
    	
    	{
   		%>
-  		
-  		<ul>
-  		<li> 
-  		이름 : <%= rs.getString("user_id")%>
+  		<div id = "seeco">
+			<ul>
+			<li>
+			<%=session.getAttribute("userid")%>님의
+  		댓글: <%= rs.getString("content")%>
   		</li>
-  		
-  		<li> 
-  		내용: <%= rs.getString("content")%>
-  		</li>
-  		
   		</ul>
-  		
-  		<%} %>
-     
-  		 
-    </div>
+  		</div>
+
+  		<%
+  		} %>
+
+</div>
     <jsp:include page="include/footer.jsp" flush="true"></jsp:include>
     </div>
   </body>

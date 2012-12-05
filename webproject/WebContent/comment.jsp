@@ -18,10 +18,10 @@ request.setCharacterEncoding("utf-8");
 try{
 	
 	
-	String name ="";
+	String userid ="";
 	String content = "";
 
-	name = request.getParameter("name");
+	userid = request.getParameter("userid");
 	content = request.getParameter("content");
 			
 			
@@ -31,15 +31,14 @@ try{
 	conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
 	
 	stmt = conn.prepareStatement(
-			"INSERT INTO comment (user_id,content) " +
-					"VALUES(?,?)"
+			"INSERT INTO comment ( content) " +
+					"VALUES(?)"
 					);
 	
-	stmt.setString(1,  name);
-	stmt.setString(2,  content);
+
+	stmt.setString(1,  content);
 
 	stmt.executeUpdate();
-
 	response.sendRedirect("about.jsp");
 	
 } finally {
