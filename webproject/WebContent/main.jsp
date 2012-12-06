@@ -16,7 +16,7 @@
 		pageNo = Integer.parseInt(request.getParameter("page"));
 	} catch (NumberFormatException ex) {}
 	
-	int numInPage = 2;											
+	int numInPage = 3;											
 	int startPos = (pageNo - 1) * numInPage; 
 	int numItems, numPages;
 	
@@ -53,7 +53,7 @@
 				stmt.close();
 				
 				stmt = conn.createStatement();
-				rs = stmt.executeQuery("SELECT * FROM photo ORDER BY title DESC LIMIT " + startPos + ", " + numInPage);
+				rs = stmt.executeQuery("SELECT * FROM photo ORDER BY id DESC LIMIT " + startPos + ", " + numInPage);
 				String gender;
 		 	%>
 
@@ -62,9 +62,11 @@
 					<%
 						while(rs.next()) {
 					%>
+						<div id="photolist">
 							<a href="photoshow.jsp?id=<%=rs.getInt("id")%>">
-								<img src="/wp/uploadpicture/<%=rs.getString("photourl")%>" alt="" width="100" height="50">
+								<img src="/wp/uploadpicture/<%=rs.getString("photourl")%>" alt="" width=300 height=200>
 							</a>
+						</div>
 						<%
 						}
 					%>

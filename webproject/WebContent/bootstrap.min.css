@@ -45,4 +45,18 @@ table.td{padding:5px,10px,20px,30px;}
 .photo td{line-height:2px; }
 .photo{text-align: center; margin:auto; }
 .photobigtable{ text-align: center; padding:30px auto; }
-
+.form-action{ text-align:center; }
+.alert{ text-align:center; margin:0 0 50px 0;}
+#center table tr a img{height : 200px; width:300px;}
+#showpic ul li {heigth : 400px; width : 500px;}
+#photolist{
+	 float: left;
+	 margin-top :10px;
+	 margin-left : 15px;
+	 margin-bottom : 10px;
+	 padding: 10px 10px 0px 10px;
+	 background: #eee;
+	 border: 1px solid #fff;
+	 width : 300px;
+	 height : 250px;
+}
