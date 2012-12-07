@@ -17,6 +17,7 @@
   String title = "";
   String content = "";
   String category = "";
+  String userid = "";
 
   int id = 0;
   try {
@@ -39,6 +40,7 @@
         title = rs.getString("title");
         content = rs.getString("content");
         category = rs.getString("category");
+        userid = rs.getString("userid");
       }
     }catch (SQLException e) {
       errorMsg = "SQL 에러: " + e.getMessage();
@@ -50,6 +52,20 @@
   } else {
     errorMsg = "Error";
   }
+  
+  try{
+  	
+   	String comment = "";
+
+  	comment = request.getParameter("comment");
+  			
+  	Class.forName("com.mysql.jdbc.Driver");
+  	
+  	conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+
+  	stmt = conn.prepareStatement("SELECT * FROM comment");
+  	rs = stmt.executeQuery();
+
 %>    
 
 <!DOCTYPE html>
@@ -75,20 +91,61 @@
     out.print("<div class='alert'>" + errorMsg + "</div>");
  } else {
  %>
-    <div>
-      <h3><%=title %></h3>
-      <ul>
-        <li>사진 : <img src="/wp/uploadpicture/<%=photourl%>" alt="" width="300" height="200"></li>
-        <li>내용 :  <%=content %></li>
-      </ul>
+    <div id="titi">
+    	<h2>작성자 : <%=userid %></h2>
+      <h2>제목 : <%=title %></h2>
+      <table>
+     		<tr>
+      		<td>사진 </td>
+      	</tr>
+      	<tr>
+      		<td><img src="/wp/uploadpicture/<%=photourl%>" alt="" width="300" height="200"></td>
+      	</tr>
+      	<tr>
+      		<td>내용 : <%=content %></td>
+      	</tr>
+      </table>
     </div>      
 <% } %>
+<%
+  	while (rs.next())
+   	
+   	{
+  		%>
+  		<div id = "seeco">
+			<ul>
+				<li>
+					<%=session.getAttribute("userid")%>님
+  				댓글: <%= rs.getString("comment")%>
+  				작성시간 : <%=rs.getString("created_at") %>
+  			</li>
+  		</ul>
+  		</div>
+
+ <%	} %>
+ <%
+   
+      if(session.getAttribute("id") !=null){
+      %>
+   
+      <form  id="co" method ="post" action = "comment.jsp" >
+ 						 댓글달기 : <input type="text" name="comment">
+        
+      			<input type = "submit" value = "작성">
+      </form>
+      
+     
+         <%
+      }%>
+	
+	<div id="titibuton">
 	  <div class="form-actions">
 	    <a href="main.jsp" class="btn">목록으로</a>
-	    <% if (id > 0) { %>
+	    <% if (id>0)  { %>
 	     <a href="#" class="btn btn-danger" data-action="delete" data-id="<%=id %>" >삭제</a>
 	    <% } %>
 	  </div>
+	</div>
 		<script>
 		  $("a[data-action='delete']").click(function() {
 		    if (confirm("정말로 삭제하시겠습니까?")) {
@@ -101,4 +158,24 @@
   <jsp:include page = "include/footer.jsp" />
 </div>
 </body>
+<%
+} finally {
+	if (rs != null)
+		try {
+			rs.close();
+		} catch (SQLException e) {
+		}
+	if (stmt != null)
+		try {
+			stmt.close();
+		} catch (SQLException e) {
+		}
+	if (conn != null)
+		try {
+			conn.close();
+		} catch (SQLException e) {
+		}
+}
+
+%>
 </html>
