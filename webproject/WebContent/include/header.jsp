@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*" import="java.util.*" import="org.apache.commons.lang3.StringUtils" %>
 
-
+<%
+String[] names = {"Animal", "Car", "Fashion","Food","Humor","Nature","People","Sports","Extra"};
+%>
 <div id="header">
   <div id="head_top">
     <div id="head_top_right">
@@ -18,7 +20,7 @@
     <a href="main.jsp"><img src="img/logo.jpg" alt="logo"></a>
   </div>
   <div id="head_bot">
-     <a href="about.jsp">About</a> |  
+     <a href="main.jsp">Home</a> | <a href="about.jsp">About</a> |  
      <% if(session.getAttribute("userid") == null) {%>
      <a href="login.jsp">Login</a> | <a href="signup.jsp">Sign up</a> 
      <%}else{ %>
@@ -36,15 +38,11 @@
   <div class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category</a> |
       <ul class="dropdown-menu">
-        <li><a href="animal.jsp">Animal</a></li>
-        <li><a href="car.jsp">Car</a></li>
-        <li><a href="fashion.jsp">Fashion</a></li>
-        <li><a href="food.jsp">Food</a></li>
-        <li><a href="humor.jsp">Humor</a></li>
-        <li><a href="nature.jsp">Nature</a></li>
-        <li><a href="people.jsp">People</a></li>
-        <li><a href="sports.jsp">Sports</a></li>
-        <li><a href="extra.jsp">Extra</a></li>
+   
+		<% for(String name : names){ %>
+			<li><a href="show_.jsp?category=<%=name %>"><%=name%></a></li>
+		
+		<%} %>
       </ul>
     <a href="time.jsp">Newest</a>
   </div>
