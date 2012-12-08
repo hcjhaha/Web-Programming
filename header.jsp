@@ -22,19 +22,19 @@
      <% if(session.getAttribute("userid") == null) {%>
      <a href="login.jsp">Login</a> | <a href="signup.jsp">Sign up</a> 
      <%}else if(session.getAttribute("userid").equals("admin")){ %>
-     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%=session.getAttribute("username")%>님</a> |
-     	<ul class="dropdown-menu">
+     <div class="dropdown">
+    	<a class="dropdown-toggle" data-toggle="dropdown2" href="#"><%=session.getAttribute("username")%>님</a> |
+     	<ul class="dropdown-menu"  id="my">
      		<li><a href="show.jsp?id=<%=session.getAttribute("id")%>">Mypage</a></li>
-     		<li><a href="#">Friend</a></li>
-     		<li><a href="#">Message</a></li>
-     	</ul> 
+     		<li><a href="showfriend.jsp">Friend</a></li>
+     	</ul>
+     </div>
      <a href="photo.jsp">Upload</a> | <a href="index.jsp">Users</a> | <a href="logout.jsp">Logout</a>
      <%}else{ %>
     	 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%=session.getAttribute("username")%>님</a> |
     		     	<ul class="dropdown-menu">
     		     		<li><a href="show.jsp?id=<%=session.getAttribute("id")%>">Mypage</a></li>
-    		     		<li><a href="#">Friend</a></li>
-    		     		<li><a href="#">Message</a></li>
+    		     		<li><a href="showfriend.jsp?id=<%=session.getAttribute("id")%>">Friend</a></li>
     		     	</ul> 
     		<a href="photo.jsp">Upload</a> | <a href="logout.jsp">Logout</a>
    <%  }%>
@@ -42,7 +42,7 @@
 </div>
 <div id="navbar">
   <div class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category</a> |
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category</a>
       <ul class="dropdown-menu">
         <li><a href="animal.jsp">Animal</a></li>
         <li><a href="car.jsp">Car</a></li>
@@ -54,6 +54,5 @@
         <li><a href="sports.jsp">Sports</a></li>
         <li><a href="extra.jsp">Extra</a></li>
       </ul>
-    <a href="time.jsp">Newest</a>
   </div>
 </div>
