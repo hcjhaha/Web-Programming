@@ -31,6 +31,12 @@
     <script src="js/bootstrap.min.js"></script>
     <link href="css/reset.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
+    <style>
+    #photolist{
+    	hieght:100px;
+    	width:250px
+    }
+    </style>
   </head>
   <body>
     <div id="body_wrap">
@@ -63,9 +69,11 @@
 						while(rs.next()) {
 					%>
 						<div id="photolist">
+						<div class="img">
 							<a href="photoshow.jsp?id=<%=rs.getInt("id")%>">
-								<img src="/wp/uploadpicture/<%=rs.getString("photourl")%>" alt="" width=300 height=200>
+								<img src="/wp/uploadpicture/<%=rs.getString("photourl")%>" alt="">
 							</a>
+							</div>
 						</div>
 						<%
 						}
