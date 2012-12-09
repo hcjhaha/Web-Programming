@@ -1,0 +1,83 @@
+CREATE DATABASE wp DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+GRANT ALL ON wp.* TO 'black'@'localhost' IDENTIFIED BY 'mustache';
+
+use wp;
+
+
+
+mysql> desc users;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | int(11)      | NO   | PRI | NULL    | auto_increment |
+| userid   | varchar(100) | NO   | UNI | NULL    |                |
+| pwd      | varchar(255) | NO   |     | NULL    |                |
+| name     | varchar(100) | YES  |     | NULL    |                |
+| email    | varchar(100) | YES  | UNI | NULL    |                |
+| birthday | date         | YES  |     | NULL    |                |
+| phone    | varchar(100) | NO   | UNI | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+create table users(
+	id int auto_increment primary key,
+	userid varchar(100) not null unique,
+	pwd varchar(100) not null,
+	name varchar(100),
+	email varchar(100) unique,
+	birthday date,
+	phone varchar(100) not null unique
+);
+
+
+mysql> desc photo;
++------------+--------------+------+-----+-------------------+----------------+
+| Field      | Type         | Null | Key | Default           | Extra          |
++------------+--------------+------+-----+-------------------+----------------+
+| id         | int(11)      | NO   | PRI | NULL              | auto_increment |
+| photourl   | varchar(255) | NO   |     | NULL              |                |
+| title      | varchar(100) | NO   |     | NULL              |                |
+| content    | text         | NO   |     | NULL              |                |
+| category   | varchar(100) | NO   |     | NULL              |                |
+| created_at | timestamp    | NO   |     | CURRENT_TIMESTAMP |                |
+| userid     | varchar(100) | NO   |     | NULL              |                |
++------------+--------------+------+-----+-------------------+----------------+
+create table photo(
+	id int auto_increment primary key,
+	photourl varchar(255) not null,
+	userid varchar(100) not null,
+	title varchar(100) not null,
+	content text not null,
+	category varchar(100) not null,
+	created_at timestamp default current_timestamp,
+);
+
+mysql> desc comment;
++------------+--------------+------+-----+-------------------+----------------+
+| Field      | Type         | Null | Key | Default           | Extra          |
++------------+--------------+------+-----+-------------------+----------------+
+| id         | int(11)      | NO   | PRI | NULL              | auto_increment |
+| photoid    | varchar(100) | YES  |     | NULL              |                |
+| comment    | text         | YES  |     | NULL              |                |
+| created_at | timestamp    | NO   |     | CURRENT_TIMESTAMP |                |
+| userid     | varchar(100) | NO   |     | NULL              |                |
++------------+--------------+------+-----+-------------------+----------------+
+create table comment(
+id int auto_increment primary key,
+userid varchar(100) not null,
+photoid varchar(100),
+comment text,
+created_at timestamp default current_timestamp);
+
+
+mysql> desc friend;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| user1 | int(11) | NO   | PRI | NULL    |       |
+| user2 | int(11) | NO   | PRI | NULL    |       |
++-------+---------+------+-----+---------+-------+
+create table friend(
+	user1 int not null,
+	user2 int not null,
+	primary key(user1,user2)
+);
