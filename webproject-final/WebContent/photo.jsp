@@ -127,7 +127,7 @@
 								%>
 							</select>
 						</div>
-						<div>
+						<div id="photobutton">
 							<a href="main.jsp" class="btn">메인으로</a>
 							<%
 								if (id <= 0) {

@@ -109,7 +109,7 @@
 			 	</div>
 	    </div>
 	    <%}%>
-    <jsp:include page="include/footer.jsp" flush="true"></jsp:include>
     </div>
+    <jsp:include page="include/footer.jsp" flush="true"></jsp:include>
   </body>
 </html>

@@ -51,7 +51,7 @@
 		</jsp:include>
 		<div id="center">
 			<% while(rs.next()){ %>
-			<ul>
+			<ul id="myfriendlist">
 				<li>친구 : <%=rs.getString("users.userid") %> <a href="#" class="btn btn-danger"
 					data-action="delete" data-id="<%=rs.getString("users.id")%>">삭제</a></li>
 			</ul>

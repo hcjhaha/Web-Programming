@@ -50,7 +50,7 @@
 						stmt.setString(1, search);
 						rs = stmt.executeQuery();
 			%>
-			<div>
+			<div id="friendlist">
 				<h3>친구찾기결과</h3>
 				<ul>
 					<%
@@ -60,7 +60,7 @@
 					
 					<a
 						href="addfriend.jsp?friendId=<%=rs.getInt("id")%>"
-						class="btn btn-mini"> 친구 등록 </a>
+						class="btn btn-mini" id="friendupbtn"> 친구 등록 </a>
 					</li>
 					<%
 						}
